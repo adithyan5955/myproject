@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .center-card {
+        margin: 0 auto;
+        max-width: 50%;
+    }
+    .btn-container {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+<div class="center-card">
+    <div class="card text-center">
+        <div class="card-header">
+            {{ task.priority }}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ task.name }}</h5>
+            <p class="card-text">{{task.date}}.</p>
+            <div class="btn-container">
+                <a href="{% url 'todo_page' %}" class="btn btn-dark">Back</a>
+                <form method="POST" action="{% url 'deletetask' task.id %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Delete" class="btn btn-outline-danger">
+                </form>
+            </div>
+        </div>
+        <div class="card-footer text-body-secondary">
+        </div>
+    </div>
+</div>
+{% endblock %}
+

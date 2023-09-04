@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+.button{
+    background-color: rgb(64, 64, 64);
+    color: white;
+    padding-top: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 2px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color .15s;
+    font-weight: bold;
+    font-size: small;
+}
+.button:hover{
+    background-color: rgb(255, 255, 255);
+    color: rgb(28, 27, 27);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 6px;
+}
+.button:active{
+    background-color: white;
+    color: red;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 6px;
+    border-color: red;
+}
+</style>
+<form method="POST">
+    {% csrf_token %}
+    {{f.as_p}}
+    <input type="submit" value="done" class="button">
+</form>
+
+{% endblock %}

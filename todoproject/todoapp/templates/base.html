@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="{% static 'style.css' %}"> -->
+</head>
+<style>
+.banner{ 
+  background-color:grey;
+  width:100%;
+  height:200px;
+  margin-bottom:50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.banner-text{
+  text-align: center;
+}
+</style>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="banner">
+        <div class="banner-text">
+          <h1>ToDo</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- <nav class="navbar bg-body-tertiary" style="background-color: rgb(141, 141, 141);">
+        <div class="container">
+          <a class="navbar-brand" href="{% url 'todo_page' %}">
+            <img src="{% static 'images/X.png' %}" alt="error" width="60" height="50">
+
+          </a>
+          <div class="text-center">TODO</div>
+        </div>
+        
+        <hr>
+      </nav> -->
+      <body style="background-color: rgb(202, 199, 199) ;">
+      <br>
+    
+   {% block content %}
+   
+   {% endblock %}
+</body>
+</html>

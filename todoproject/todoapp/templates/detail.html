@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <h5 class="card-header" style="background-color: black; color: white;">{{ task.priority }}</h5>
+            <div class="card-body">
+                <h5 class="card-title">{{ task.name }}</h5>
+                <p class="card-text">{{ task.date }}</p>
+                <form action="{% url 'deletetask' task.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                </form>
+                <a class="btn btn-outline-dark" href="{% url 'updatetask' task.id %}">Update</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

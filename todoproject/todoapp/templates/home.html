@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .button{
+        background-color: rgb(64, 64, 64);
+        color: white;
+        padding-top: 2px;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-bottom: 2px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color .15s;
+        font-weight: bold;
+        font-size: small;
+    }
+    .button:hover{
+        background-color: rgb(255, 255, 255);
+        color: rgb(28, 27, 27);
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 6px;
+    }
+    .button:active{
+        background-color: white;
+        color: red;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 6px;
+        border-color: red;
+    }
+    .card {
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+}
+
+</style>
+<!-- <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="banner">
+                <div class="banner-text">
+                    <h1>TODO</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="POST">
+                {% csrf_token %}
+                <input type="text" class="form-control" name="task" placeholder="Task Name">
+                <input type="text" class="form-control" name="priority" placeholder="Enter Your Priority">
+                <input type="date" class="form-control" name="date" placeholder="Date">
+                <input type="submit" value="DONE" class="button">
+            </form>
+        </div>
+    </div>
+    
+    <div class="row">
+        {% for i in task %}
+        <div class="col-md-6">
+            <div class="card">
+                <h5 class="card-header" style="background-color: black; color: white;">{{ i.priority }}</h5>
+                <div class="card-body">
+                    <h5 class="card-title">{{ i.name }}</h5>
+                    <p class="card-text">{{ i.date|date:"Y-m-d" }}</p>
+                    <form action="{% url 'deletetask' i.id %}" method="POST">
+                        {% csrf_token %}
+                        <a class="btn btn-outline-danger" href="{% url 'deletetask' i.id %}">Delete</a>
+                        <a class="btn btn-outline-dark" href="{% url 'updatetask' i.id %}">update</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

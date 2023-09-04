@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card">
+    <div class="card-header">
+        ToDo
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Update</h5>
+        <p class="card-text"></p>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <!-- <input type="date" name="date" class="form-control"> -->
+
+            <input type="submit" value="update" class="btn btn-outline-info">
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
