@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="padding-left: 30px;padding-top: 30px;">
+    <div>
+        <img src="{{movie.img.url}}" style="width: 200px; height:  150px;">
+    </div>
+    Name : <strong>{{movie.name}}</strong><br>
+    About : <i>{{movie.desc}}</i><br>
+    Year &nbsp;&nbsp;&nbsp;: {{movie.year}}<br>
+   <div style="padding-top: 30px;">
+    <a href="{% url 'movieapp:updatemovie' movie_id=movie.id %}" class="btn btn-warning">Update</a><br>
+    <div style="padding-top: 30px;"></div>
+    <form method="POST" action="{% url 'movieapp:deletemovie' movie_id=movie.id %}">
+        {% csrf_token %}
+        <input type="submit" value="Delete Movie" class="btn btn-danger">
+    </form>
+    </div>
+   </div>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Update Movie</h2>
+<div>
+    <div style="padding-left: 30px; padding-top: 30px;">
+        {% csrf_token %}
+        {{form.as_p}}
+    </div>
+    <input type="submit" value="Update Movie" class="btn-primary">
+</div>
+
+    
+{% endblock %}
