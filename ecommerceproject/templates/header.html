@@ -1,0 +1,146 @@
+{% load static %}
+
+<header style="background-color: black; display: flex; align-items: center; justify-content: space-between;">
+    <div style="display: flex; align-items: center; padding-left: 80px;">
+        <a href="{% url 'shop:allProdCat' %}">
+            <img src="{% static 'img/logo2.1.png' %}" alt="logoimage" style="max-width: 100px; max-height: 100px;">
+        </a>
+        <nav>
+            <ul style="list-style: none; display: flex; align-items: center;">
+                <li style="margin-right: 20px;"><a href="{% url 'shop:allProdCat' %}" style="color: white; text-decoration: none;">Home</a></li>
+                <li class="dropdown" style="margin-right: 20px;">
+                    <a href="#" style="color: white; text-decoration: none;">Collections</a>
+                    <ul class="dropdown-content">
+                        <a href="{% url 'shop:allProdCat' %}" style="color:white;">All Products</a>
+                        {% for cat in links %}
+                        <a href="{% url 'shop:products_by_category' cat.slug %}" style="color:white;">{{ cat.name }}</a>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li style="margin-right: 20px;"><a href="#" style="color: white; text-decoration: none;">About Us</a></li>
+                <li style="margin-right: 20px;"><a href="#" style="color: white; text-decoration: none;">Sales</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+    {% if item_count > 0 %}
+<div style="padding-right: 80px; margin-bottom: 12px;color: #f6f6f6;">
+    <a href="{% url 'cart:cart_detail' %}" style="text-decoration: none;"><i class="fa fa-shopping-cart" style="color: #f6f6f6;"></i><span class="item-count">({{item_count}})</span></a>
+</div>
+{% else %}
+<div style="padding-right: 80px; margin-bottom: 12px;color: #f6f6f6;">
+    <a href="{% url 'cart:cart_detail' %}" style="text-decoration: none;"><i class="fa fa-shopping-cart" style="color: #f6f6f6;"></i><span class="item-count">(0)</span></a>
+</div>
+{% endif %}
+    
+</header>
+
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var searchTerm = document.querySelector('input[type=search]').value;
+    });
+
+    document.querySelector('.dropdown > a').addEventListener('click', function(event) {
+        event.preventDefault();
+        var dropdownMenu = document.querySelector('.dropdown-menu');
+        if (dropdownMenu.style.display === 'none') {
+            dropdownMenu.style.display = 'block';
+        } else {
+            dropdownMenu.style.display = 'none';
+        }
+    });
+
+    var header = document.querySelector('header');
+
+    var prevScrollpos = window.pageYOffset;
+
+    window.addEventListener('scroll', function() {
+        var currentScrollPos = window.pageYOffset;
+
+        if (prevScrollpos > currentScrollPos) {
+            header.style.top = "0";
+        } else {
+            header.style.top = "-65px";
+        }
+
+        // Update the previous scroll position
+        prevScrollpos = currentScrollPos;
+    });
+</script>
+<style>
+/* .dropdown-menu a {
+    text-decoration: none;
+}
+
+.dropdown-menu {
+    background-color: white;
+} */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    transition: top 0.3s ease-in-out;
+    /* margin-bottom: 50px; */
+}
+.button1 {
+    background-color: black;
+    color: #f6f6f6;
+    border-style: solid;
+    border-radius: 10%;
+    border-color: #f6f6f6;
+    height: 35px;
+  transition-duration: 0.4s;
+  text-align: center;
+}
+
+.button1:hover {
+  background-color: #f6f6f6; /* Green */
+  color: rgb(0, 0, 0);
+}
+.item-count {
+    color: white;
+    text-decoration: none;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #131313;
+    min-width: 130px;
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: #ffffff;
+}
+
+.dropdown-content a:hover {
+    background-color: #404040;
+}
+
+
+</style>
